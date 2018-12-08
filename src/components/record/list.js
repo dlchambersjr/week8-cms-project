@@ -2,13 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // will need to import Auth for verification
-// will need to import Record for the form
+import Record from './record';
 import If from '../if/if.js';
 
 import * as actions from './actions';
 
 // const API = 'https://javascript-401-api.herokuapp.com';
-const API = 'http://localhost:3000';
+const API = 'http://localhost:3030';
 
 class Records extends React.Component {
   constructor(props) {
@@ -19,10 +19,11 @@ class Records extends React.Component {
     this.addNew = this.addNew.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     let url = `${API}/api/v1/${this.props.model}`;
-    console.log(url)
-    this.props.handleGetSchemas({
+    console.log('LIST URL:', url)
+    console.log('LIST MODEL', this.props.model);
+    this.props.handleGetRecords({
       url: url,
       model: this.props.model,
     });
@@ -50,7 +51,7 @@ class Records extends React.Component {
             ))}
           </ul>
         </If>
-        <p>EDIT FORM HERE</p>
+        <Record model={this.props.model} id={this.state.id} />
       </div>
     );
   }
@@ -61,7 +62,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchtoProps = ((dispatch, getState) => ({
-  handleGetSchemas: url => dispatch(actions.get(url)),
+  handleGetRecords: url => dispatch(actions.get(url)),
 }));
 
 export default connect(
