@@ -1,6 +1,3 @@
-![CF](http://i.imgur.com/7v5ASc8.png) LAB
-=================================================
-
 ## Week-8: CMS Project
 
 ### Author: David Chambers
@@ -12,14 +9,45 @@
 * [Deployed front-end](TBD)
 
 ### Modules
-#### `modulename.js`
+
+#### `index.js` -> renders to the DOM
+* Purpose: Wraps the module(s) to be rendered in the store provider.
+* Renders `<App/>
+
+#### `store/index.js`
 ##### Exported Values and Methods
 
-###### `foo(thing) -> string`
+###### `store() -> reducers and middleware`
+* Records: state created by the records reducer
+* Thunk: middleware to assit with Async processes.
+
+
+#### `App.js` -> TBD
+##### Exported Values and Methods
+
+<!-- ###### `foo(thing) -> string`
 Usage Notes or examples
 
 ###### `bar(array) -> array`
+Usage Notes or examples -->
+
+#### `components/record/list.js` -> TBD
+##### Exported Values and Methods
+
+<!-- ###### `foo(thing) -> string`
 Usage Notes or examples
+
+###### `bar(array) -> array`
+Usage Notes or examples -->
+
+
+
+
+
+
+
+
+
 
 ### Setup
 #### `.env` requirements

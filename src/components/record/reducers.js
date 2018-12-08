@@ -10,7 +10,7 @@ export default (state = intialState, action) => {
       return { ...state, [model]: data };
 
     case 'POST':
-      return state;
+      return { ...state, [model]: data };
 
     case 'PUT':
       return state;
