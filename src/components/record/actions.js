@@ -1,4 +1,4 @@
-import api from '../lib/api';
+import * as api from '../lib/api';
 
 export const get = payload => dispatch => {
   return api
