@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import cookie from 'react-cookies';
 
 import Form from 'react-jsonschema-form';
+
 
 import * as api from '../lib/api';
 
@@ -27,7 +29,7 @@ class Record extends React.Component {
   async componentDidMount() {
     let url = `${API}/api/v1/${this.props.model}/schema`;
     let schema = await api.get(url);
-    console.log('SCHEMA URL:', url)
+    console.log('SCHEMA URL:', url);
     console.log('SCHEMA MODEL:', this.props.model);
     console.log(schema);
     this.setState({ schema });
@@ -47,10 +49,13 @@ class Record extends React.Component {
       //   record: formData,
       // });
     } else {
+      console.log('Building Submit Request');
+      console.log(cookie.load('auth'));
       this.props.handlePost({
         url: url,
         model: this.props.model,
         record: formData,
+        token: cookie.load('auth'),
       });
     }
   }

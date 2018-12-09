@@ -14,10 +14,12 @@ class Login extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleSubmit(event, loginHandler) {
+  async  handleSubmit(event, loginHandler) {
     event.preventDefault();
     const { username, password } = this.state;
-    superagent
+    console.log('USERNAME: ', username);
+    console.log('PASSWORD: ', password);
+    await superagent
       .post(`${API}/signin`)
       .auth(username, password)
       .then(response => {
@@ -40,13 +42,14 @@ class Login extends React.Component {
           return (
             <div>
               <h2>{context.token}</h2>
+
               <If condition={context.loggedIn}>
                 <h2>Hello {this.state.username}</h2>
                 <button onClick={context.logout}>Logout</button>
               </If>
-              <If condition={!context.loggedIn}>
 
-                <form onClick={event => this.handleSubmit(event, context.login)}>
+              <If condition={!context.loggedIn}>
+                <form onSubmit={event => this.handleSubmit(event, context.login)}>
                   <input type='text'
                     placeholder='username'
                     name='username'

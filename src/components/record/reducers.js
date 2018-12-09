@@ -7,6 +7,11 @@ export default (state = intialState, action) => {
 
   switch (type) {
     case 'GET':
+      console.log('GET REDUCER STATE: ', { ...state });
+      console.log('GET REDUCER MODEL: ', model);
+      console.log('GET REDUCER DATA: ', data);
+      console.log('GET REDUCER NEW STATE: ', { ...state, [model]: data });
+
       return { ...state, [model]: data };
 
     case 'POST':
