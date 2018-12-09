@@ -7,24 +7,30 @@ export default (state = intialState, action) => {
 
   switch (type) {
     case 'GET':
-      console.log('GET REDUCER STATE: ', { ...state });
-      console.log('GET REDUCER MODEL: ', model);
-      console.log('GET REDUCER DATA: ', data);
-      console.log('GET REDUCER NEW STATE: ', { ...state, [model]: data });
-
       return { ...state, [model]: data };
 
     case 'POST':
-      return { ...state, [model]: data };
+      return { ...state, [model]: state[model] ? [...state[model], data] : [data] };
 
     case 'PUT':
       return state;
 
-    case 'patch':
+    case 'PATCH':
       return state;
 
-    case 'DESTROY':
-      return state;
+    case 'DELETE': {
+      console.log('BEFORE DEL ID: ', payload.id);
+      console.log('BEFORE DEL MODEL: ', payload.model);
+      console.log('BEFORE DEL DATA: ', payload.data);
+      let records = { ...state[model] };
+      console.log('BEFORE DELETE', records);
+
+
+      let recordsToKeep = records.filter(target => target._id !== id);
+      console.log('KEEP AFTER DELETE', recordsToKeep);
+
+      return { ...state, [model]: recordsToKeep };
+    }
 
     default:
       return state;
