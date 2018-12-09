@@ -15,13 +15,13 @@ class Records extends React.Component {
     super(props);
     this.state = {
       id: null,
-    }
+    };
     this.addNew = this.addNew.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     let url = `${API}/api/v1/${this.props.model}`;
-    console.log('LIST URL:', url)
+    console.log('LIST URL:', url);
     console.log('LIST MODEL', this.props.model);
     this.props.handleGetRecords({
       url: url,
@@ -36,7 +36,7 @@ class Records extends React.Component {
 
 
   render() {
-    let records = this.props.records[this.props.model] || ['NO PLAYERS']
+    let records = this.props.records[this.props.model] || [];
     return (
       <div>
         <h1>{this.props.model.toUpperCase()}</h1>
@@ -50,6 +50,7 @@ class Records extends React.Component {
               </li>
             ))}
           </ul>
+          <hr></hr>
         </If>
         <Record model={this.props.model} id={this.state.id} />
       </div>
@@ -62,7 +63,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchtoProps = ((dispatch, getState) => ({
-  handleGetRecords: url => dispatch(actions.get(url)),
+  handleGetRecords: payload => dispatch(actions.get(payload)),
 }));
 
 export default connect(

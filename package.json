@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "dotenv": "^6.2.0",
+    "jsonwebtoken": "^8.4.0",
     "querystring": "^0.2.0",
     "react": "^16.6.3",
     "react-cookies": "^0.1.0",
