@@ -9,7 +9,6 @@ export const get = url => {
 
 
 export const post = payload => {
-
   return superagent
     .post(payload.url)
     .auth('admin', 'ADMIN') //FIXME: Change back when implementing login component
