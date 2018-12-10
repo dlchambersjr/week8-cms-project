@@ -1,6 +1,5 @@
 import React from 'react';
 import cookie from 'react-cookies';
-import queryString from 'querystring';
 
 export const LoginContext = React.createContext();
 
@@ -22,7 +21,7 @@ class LoginProvider extends React.Component {
   login(token) {
     console.log('LOGIN TOKEN" ', token);
     cookie.save('auth', token);
-    this.setState({ token: null, loggedIn: true });
+    this.setState({ token: token, loggedIn: true });
   }
 
   logout() {

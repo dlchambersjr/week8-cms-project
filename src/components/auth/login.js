@@ -41,8 +41,6 @@ class Login extends React.Component {
         {context => {
           return (
             <div>
-              <h2>{context.token}</h2>
-
               <If condition={context.loggedIn}>
                 <h2>Hello {this.state.username}</h2>
                 <button onClick={context.logout}>Logout</button>

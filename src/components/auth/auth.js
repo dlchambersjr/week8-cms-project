@@ -1,12 +1,10 @@
 import React from 'react';
-import superagent from 'superagent';
-require('dotenv').config();
-import { LoginContext } from './context';
 import jsonWebToken from 'jsonwebtoken';
-import If from '../if/if';
 
-// const API = 'https://javascript-401-api.herokuapp.com';
-const API = 'http://localhost:3030';
+import { LoginContext } from './context';
+import If from '../if/if';
+require('dotenv').config();
+console.log(process.env.SECRET);
 
 class Auth extends React.Component {
   render() {
