@@ -126,4 +126,4 @@ MORE TO DO...
 * `npm start` from a local repo
 
 #### UML
-[CMS](UML LINK HERE)
+[CMS](https://raw.githubusercontent.com/dlchambersjr/week8-cms-project/master/cms-uml.jpg)
