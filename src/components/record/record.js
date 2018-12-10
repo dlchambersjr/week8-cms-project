@@ -9,8 +9,7 @@ import * as api from '../lib/api';
 
 import * as actions from './actions';
 
-// const API = 'https://javascript-401-api.herokuapp.com';
-const API = 'http://localhost:3030';
+const API = 'https://dc-api-server.herokuapp.com';
 
 const uiSchema = {
   _id: { 'ui:widget': 'hidden' },
