@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-// will need to import Auth for verification
+import Auth from '../auth/auth';
 import Record from './record';
 import If from '../if/if.js';
 
@@ -54,19 +54,30 @@ class Records extends React.Component {
     return (
       <div>
         <h1>{this.props.model.toUpperCase()}</h1>
-        <button onClick={this.addNew}>ADD New Player</button>
+        <Auth capability='update'>
+          <button onClick={this.addNew}>ADD New Player</button>
+        </Auth>
         <If condition={records}>
           <ul>
             {records.map((record, index) => (
               <li key={index}>{record.name}
-                <button onClick={() => this.editRecord(index)}>EDIT</button>
-                <button onClick={() => this.deleteOne(record._id)}>DELETE</button>
+
+                <Auth capability='update'>
+                  <button onClick={() => this.editRecord(index)}>EDIT</button>
+                </Auth>
+
+                <Auth capability='delete'>
+                  <button onClick={() => this.deleteOne(record._id)}>DELETE</button>
+                </Auth>
+
               </li>
             ))}
           </ul>
           <hr></hr>
         </If>
-        <Record model={this.props.model} id={this.state.id} />
+        <Auth capability='update'>
+          <Record model={this.props.model} id={this.state.id} />
+        </Auth>
       </div>
     );
   }

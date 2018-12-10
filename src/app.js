@@ -1,8 +1,9 @@
 import React from 'react';
 
-import RecordList from './components/record/list';
 import LoginContext from './components/auth/context';
 import Login from './components/auth/login';
+import Auth from './components/auth/auth';
+import RecordList from './components/record/list';
 
 class App extends React.Component {
   render() {
@@ -11,7 +12,9 @@ class App extends React.Component {
       <div>
         <LoginContext>
           <Login />
-          <RecordList model="players" />
+          <Auth capability='read'>
+            <RecordList model="players" />
+          </Auth>
         </LoginContext>
       </div>
     );
