@@ -4,8 +4,7 @@
 
 ### Links and Resources
 * [REPO: Week-8: CMS Project](http://xyz.com)
-* [TESTING: travis](http://xyz.com)
-* [Deployed back-end - provided by CF](https://javascript-401-api.herokuapp.com/)
+* [Deployed back-end](https://dc-api-server.herokuapp.com)
 * [Deployed front-end](TBD)
 
 ### Modules

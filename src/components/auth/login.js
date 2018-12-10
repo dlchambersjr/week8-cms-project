@@ -3,8 +3,8 @@ import superagent from 'superagent';
 import { LoginContext } from './context';
 import If from '../if/if';
 
-// const API = 'https://javascript-401-api.herokuapp.com';
-const API = 'http://localhost:3030';
+
+const API = 'https://dc-api-server.herokuapp.com';
 
 class Login extends React.Component {
   constructor(props) {
@@ -41,9 +41,10 @@ class Login extends React.Component {
         {context => {
           return (
             <div>
+
               <If condition={context.loggedIn}>
-                <h2>Hello {this.state.username}</h2>
-                <button onClick={context.logout}>Logout</button>
+                <h2>Hello {this.state.username}
+                  <button onClick={context.logout}>Logout</button></h2>
               </If>
 
               <If condition={!context.loggedIn}>

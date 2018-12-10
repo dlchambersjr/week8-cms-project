@@ -12,7 +12,7 @@ class Auth extends React.Component {
       <LoginContext.Consumer>
         {context => {
           const user = context.token
-            ? jsonWebToken.verify(context.token, process.env.SECRET || 'changeit')
+            ? jsonWebToken.verify(context.token, 'MYSECRETPASSWORD' || 'changeit') //FIXME: dotenv not working?
             : {};
           const { capability } = this.props;
           const okToRender =

@@ -6,30 +6,58 @@ import Record from './record';
 import If from '../if/if.js';
 
 import * as actions from './actions';
+import * as api from '../lib/api';
 
-// const API = 'https://javascript-401-api.herokuapp.com';
-const API = 'http://localhost:3030';
+const API = 'https://dc-api-server.herokuapp.com';
 
 class Records extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       id: null,
+      models: null,
+      schema: null,
     };
+
     this.addNew = this.addNew.bind(this);
     this.deleteOne = this.deleteOne.bind(this);
     this.editRecord = this.editRecord.bind(this);
   }
 
-  componentDidMount() {
-    let url = `${API}/api/v1/${this.props.model}`;
-    console.log('LIST URL:', url);
-    console.log('LIST MODEL', this.props.model);
-    this.props.handleGetRecords({
-      url: url,
-      model: this.props.model,
-    });
+  async componentDidMount() {
+    let modelUrl = `${API}/api/v1/models`;
+    let models = await api.get(modelUrl);
+    console.log('MODELS URL:', modelUrl);
+    console.log(models);
+    this.setState({ models });
   }
+
+  // async getModels(url) {
+  //   let modelUrl = `${API}/api/v1/models`;
+  //   let models = await api.get(modelUrl);
+  //   console.log('MODELS URL:', modelUrl);
+  //   console.log(models);
+  //   this.setState({ models });
+  // }
+
+  // async getSchema(url) {
+
+  //     let url = `${API}/api/v1/${this.props.model}`;
+  // console.log('LIST URL:', url);
+  // console.log('LIST MODEL', this.props.model);
+  // this.props.handleGetRecords({
+  //   url: url,
+  //   model: this.props.model,
+  // });
+
+
+
+  //   let url = `${API}/api/v1/${this.schema}`;
+  //   let models = await api.get(url);
+  //   console.log('MODELS URL:', url);
+  //   console.log(models);
+  //   this.setState({ models });
+  // }
 
   addNew() {
     let id = null;
@@ -51,8 +79,24 @@ class Records extends React.Component {
 
   render() {
     let records = this.props.records[this.props.model] || [];
+    let models = this.models || [];
+    console.log('LET:', models);
     return (
       <div>
+        <If condition={models}>
+          <form onSubmit={this.handleSubmit}>
+            <label> Choose the model you wish to use:
+              <select name="model" onChange={this.handleChange}>
+                {models.map((model, index) => (
+                  <option key={index} value="model">{model}</option>
+                ))}
+              </select>
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
+          <hr />
+        </If>
+
         <h1>{this.props.model.toUpperCase()}</h1>
         <Auth capability='update'>
           <button onClick={this.addNew}>ADD New Player</button>
