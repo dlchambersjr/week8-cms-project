@@ -19,16 +19,8 @@ export default (state = intialState, action) => {
       return state;
 
     case 'DELETE': {
-      console.log('BEFORE DEL ID: ', payload.id);
-      console.log('BEFORE DEL MODEL: ', payload.model);
-      console.log('BEFORE DEL DATA: ', payload.data);
-      let records = { ...state[model] };
-      console.log('BEFORE DELETE', records);
-
-
+      let records = state[model];
       let recordsToKeep = records.filter(target => target._id !== id);
-      console.log('KEEP AFTER DELETE', recordsToKeep);
-
       return { ...state, [model]: recordsToKeep };
     }
 
