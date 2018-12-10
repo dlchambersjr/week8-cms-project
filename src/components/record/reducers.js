@@ -12,9 +12,11 @@ export default (state = intialState, action) => {
     case 'POST':
       return { ...state, [model]: state[model] ? [...state[model], data] : [data] };
 
-    case 'PUT':
-      return state;
-
+    case 'PUT': {
+      let putList = state[model].map((record, index) => index === id ? data : record);
+      return { ...state, [model]: putList };
+    }
+    // TODO: I'm still not quite sure how this is done
     case 'PATCH':
       return state;
 

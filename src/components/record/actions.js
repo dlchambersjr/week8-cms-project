@@ -43,7 +43,7 @@ export const deleteOne = payload => dispatch => {
     .set('Authorization', `Bearer ${cookie.load('auth')}`)
     .send(payload.record)
     .then(data => {
-      dispatch(runDeleteOne({ id: payload.id, model: payload.model, data: data.body }));
+      dispatch(runDeleteOne({ id: payload.id, model: payload.model }));
     })
     .catch(console.error);
 };
@@ -51,6 +51,25 @@ export const deleteOne = payload => dispatch => {
 const runDeleteOne = payload => {
   return {
     type: 'DELETE',
+    payload: payload,
+  };
+};
+
+export const put = payload => dispatch => {
+  console.log(payload.url, payload.model);
+  return superagent
+    .put(payload.url)
+    .set('Authorization', `Bearer ${cookie.load('auth')}`)
+    .send(payload.record)
+    .then(data => {
+      dispatch(runPut({ id: payload.id, model: payload.model, data: data.body }));
+    })
+    .catch(console.error);
+};
+
+const runPut = payload => {
+  return {
+    type: 'PUT',
     payload: payload,
   };
 };

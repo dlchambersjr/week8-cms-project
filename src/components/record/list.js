@@ -18,6 +18,7 @@ class Records extends React.Component {
     };
     this.addNew = this.addNew.bind(this);
     this.deleteOne = this.deleteOne.bind(this);
+    this.editRecord = this.editRecord.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +36,9 @@ class Records extends React.Component {
     this.setState({ id });
   }
 
+  editRecord(id) {
+    this.setState({ id });
+  }
 
   deleteOne(id) {
     const url = `${API}/api/v1/${this.props.model}/${id}`;
@@ -45,21 +49,18 @@ class Records extends React.Component {
     });
   }
 
-
   render() {
     let records = this.props.records[this.props.model] || [];
     return (
       <div>
         <h1>{this.props.model.toUpperCase()}</h1>
-        <button onClick={this.addNew}>A New Player</button>
+        <button onClick={this.addNew}>ADD New Player</button>
         <If condition={records}>
           <ul>
             {records.map((record, index) => (
               <li key={index}>{record.name}
-                <button>EDIT</button>
-                <button
-                  onClick={() => this.deleteOne(record._id)}
-                >DELETE</button>
+                <button onClick={() => this.editRecord(index)}>EDIT</button>
+                <button onClick={() => this.deleteOne(record._id)}>DELETE</button>
               </li>
             ))}
           </ul>
