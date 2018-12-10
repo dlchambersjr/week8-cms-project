@@ -15,7 +15,7 @@ class Records extends React.Component {
     super(props);
     this.state = {
       id: null,
-      models: null,
+      models: ['categories', 'players', 'products', 'teams'],
       schema: null,
     };
 
@@ -25,6 +25,16 @@ class Records extends React.Component {
   }
 
   async componentDidMount() {
+    let url = `${API}/api/v1/${this.props.model}`;
+    console.log('LIST URL:', url);
+    console.log('LIST MODEL', this.props.model);
+    this.props.handleGetRecords({
+      url: url,
+      model: this.props.model,
+    });
+  }
+
+  async getModels(url) {
     let modelUrl = `${API}/api/v1/models`;
     let models = await api.get(modelUrl);
     console.log('MODELS URL:', modelUrl);
@@ -32,32 +42,21 @@ class Records extends React.Component {
     this.setState({ models });
   }
 
-  // async getModels(url) {
-  //   let modelUrl = `${API}/api/v1/models`;
-  //   let models = await api.get(modelUrl);
-  //   console.log('MODELS URL:', modelUrl);
-  //   console.log(models);
-  //   this.setState({ models });
-  // }
+  async getSchemas(model) {
+    let SchemaUrl = `${API}/api/v1/${this.props.model}`;
+    console.log('SCHEMA URL:', SchemaUrl);
+    console.log('SCHEMA MODEL', this.props.model);
+    this.props.handleGetRecords({
+      url: SchemaUrl,
+      model: this.props.model,
+    });
+  }
 
-  // async getSchema(url) {
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log('MODEL: ');
 
-  //     let url = `${API}/api/v1/${this.props.model}`;
-  // console.log('LIST URL:', url);
-  // console.log('LIST MODEL', this.props.model);
-  // this.props.handleGetRecords({
-  //   url: url,
-  //   model: this.props.model,
-  // });
-
-
-
-  //   let url = `${API}/api/v1/${this.schema}`;
-  //   let models = await api.get(url);
-  //   console.log('MODELS URL:', url);
-  //   console.log(models);
-  //   this.setState({ models });
-  // }
+  }
 
   addNew() {
     let id = null;
@@ -79,8 +78,8 @@ class Records extends React.Component {
 
   render() {
     let records = this.props.records[this.props.model] || [];
-    let models = this.models || [];
-    console.log('LET:', models);
+    let models = this.state.models || [];
+
     return (
       <div>
         <If condition={models}>
@@ -88,7 +87,7 @@ class Records extends React.Component {
             <label> Choose the model you wish to use:
               <select name="model" onChange={this.handleChange}>
                 {models.map((model, index) => (
-                  <option key={index} value="model">{model}</option>
+                  <option key={index} value={model}>{model.toUpperCase()}</option>
                 ))}
               </select>
             </label>
@@ -122,6 +121,7 @@ class Records extends React.Component {
         <Auth capability='update'>
           <Record model={this.props.model} id={this.state.id} />
         </Auth>
+
       </div>
     );
   }

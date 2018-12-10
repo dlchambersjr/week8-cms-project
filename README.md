@@ -2,10 +2,12 @@
 
 ### Author: David Chambers
 
+**NOTE:** *I'm still working on incorporating the ability to choose/change models.  All other functionality is present.  Currently, the players model is active.*
+
 ### Links and Resources
 * [REPO: Week-8: CMS Project](http://xyz.com)
 * [Deployed back-end](https://dc-api-server.herokuapp.com)
-* [Deployed front-end](TBD)
+* [Deployed front-end](http://dc-cms-week8.s3-website-us-west-2.amazonaws.com)
 
 ### Modules
 
@@ -39,13 +41,80 @@ Usage Notes or examples
 ###### `bar(array) -> array`
 Usage Notes or examples -->
 
+#### `components/record/record.js` -> TBD
+##### Exported Values and Methods
+
+<!-- ###### `foo(thing) -> string`
+Usage Notes or examples
+
+###### `bar(array) -> array`
+Usage Notes or examples -->
+
+#### `components/record/actions.js` -> TBD
+##### Exported Values and Methods
+
+<!-- ###### `foo(thing) -> string`
+Usage Notes or examples
+
+###### `bar(array) -> array`
+Usage Notes or examples -->
+
+#### `components/record/reducers.js` -> TBD
+##### Exported Values and Methods
+
+<!-- ###### `foo(thing) -> string`
+Usage Notes or examples
+
+###### `bar(array) -> array`
+Usage Notes or examples -->
 
 
+#### `components/lib/api.js` -> TBD
+##### Exported Values and Methods
 
+<!-- ###### `foo(thing) -> string`
+Usage Notes or examples
 
+###### `bar(array) -> array`
+Usage Notes or examples -->
 
+#### `components/if/if.js` -> TBD
+##### Exported Values and Methods
 
+<!-- ###### `foo(thing) -> string`
+Usage Notes or examples
 
+###### `bar(array) -> array`
+Usage Notes or examples -->
+
+#### `components/auth/context.js` -> TBD
+##### Exported Values and Methods
+
+<!-- ###### `foo(thing) -> string`
+Usage Notes or examples
+
+###### `bar(array) -> array`
+Usage Notes or examples -->
+
+#### `components/auth/auth.js` -> TBD
+##### Exported Values and Methods
+
+<!-- ###### `foo(thing) -> string`
+Usage Notes or examples
+
+###### `bar(array) -> array`
+Usage Notes or examples -->
+
+#### `components/auth/login.js` -> TBD
+##### Exported Values and Methods
+
+<!-- ###### `foo(thing) -> string`
+Usage Notes or examples
+
+###### `bar(array) -> array`
+Usage Notes or examples -->
+
+MORE TO DO...
 
 
 ### Setup
@@ -54,16 +123,7 @@ Usage Notes or examples -->
 
 
 #### Running the app
-* `npm start`
-* Endpoint: `/foo/bar/`
-  * Returns a JSON object with abc in it.
-* Endpoint: `/bing/zing/`
-  * Returns a JSON object with xyz in it.
-
-#### Tests
-* How do you run tests?
-* What assertions were made?
-* What assertions need to be / should be made?
+* `npm start` from a local repo
 
 #### UML
-Link to an image of the UML for your application and response to events
+[CMS](UML LINK HERE)

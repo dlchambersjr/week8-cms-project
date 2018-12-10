@@ -4,9 +4,6 @@ import LoginContext from './components/auth/context';
 import Login from './components/auth/login';
 import Auth from './components/auth/auth';
 
-import { ModelContext } from './components/models/context';
-import Model from './components/models/model';
-
 import RecordList from './components/record/list';
 
 class App extends React.Component {
@@ -17,8 +14,8 @@ class App extends React.Component {
         <LoginContext>
 
           <Login />
-          <Auth capability='read'>
 
+          <Auth capability='read'>
             <RecordList model="players" />
           </Auth>
 
