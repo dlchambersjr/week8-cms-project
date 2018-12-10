@@ -41,13 +41,13 @@ class Record extends React.Component {
     let url = `${API}/api/v1/${this.props.model}`;
     if (parseInt(this.props.id) >= 0) {
       console.log('PUT:', formData);
-      // url = url + `/${formData._id}`;
-      // this.props.handlePut({
-      //   url: url,
-      //   id: this.props.id,
-      //   model: this.props.model,
-      //   record: formData,
-      // });
+      url = url + `/${formData._id}`;
+      this.props.handlePut({
+        url: url,
+        id: this.props.id,
+        model: this.props.model,
+        record: formData,
+      });
     } else {
       console.log('Building Submit Request');
       console.log(cookie.load('auth'));
@@ -78,11 +78,6 @@ class Record extends React.Component {
       </div>
     );
   }
-
-
-
-
-
 }
 
 const mapStateToProps = state => ({
@@ -91,9 +86,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, getState) => ({
   handlePost: payload => dispatch(actions.post(payload)),
-  // handlePut: payload => dispatch(actions.put(payload)),
+  handlePut: payload => dispatch(actions.put(payload)),
   // handlePatch: payload => dispatch(actions.patch(payload)),
-  // handleDelete: payload => dispatch(actions.delete(payload)),
+
 });
 
 export default connect(
