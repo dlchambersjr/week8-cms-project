@@ -17,6 +17,7 @@ class Records extends React.Component {
       id: null,
     };
     this.addNew = this.addNew.bind(this);
+    this.deleteOne = this.deleteOne.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +36,16 @@ class Records extends React.Component {
   }
 
 
+  deleteOne(id) {
+    const url = `${API}/api/v1/${this.props.model}/${id}`;
+    this.props.handleDeleteOne({
+      url: url,
+      model: this.props.model,
+      id: id,
+    });
+  }
+
+
   render() {
     let records = this.props.records[this.props.model] || [];
     return (
@@ -46,7 +57,9 @@ class Records extends React.Component {
             {records.map((record, index) => (
               <li key={index}>{record.name}
                 <button>EDIT</button>
-                <button>DELETE</button>
+                <button
+                  onClick={() => this.deleteOne(record._id)}
+                >DELETE</button>
               </li>
             ))}
           </ul>
@@ -64,6 +77,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchtoProps = ((dispatch, getState) => ({
   handleGetRecords: payload => dispatch(actions.get(payload)),
+  handleDeleteOne: payload => dispatch(actions.deleteOne(payload)),
 }));
 
 export default connect(

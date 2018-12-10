@@ -1,12 +1,10 @@
 import superagent from 'superagent';
-
-import * as api from '../lib/api';
+import cookie from 'react-cookies';
 
 export const get = payload => dispatch => {
   return superagent
     .get(payload.url)
     .then(data => {
-      console.log(payload.url, payload.model, data.body);
       dispatch(runGet({ model: payload.model, data: data.body.results }));
     })
     .catch(console.error);
@@ -26,8 +24,7 @@ export const post = payload => dispatch => {
     .set('Authorization', `Bearer ${payload.token}`)
     .send(payload.record)
     .then(data => {
-      console.log(payload.url, payload.model, data.body);
-      dispatch(runPost({ model: payload.model, data: data.body.results }));
+      dispatch(runPost({ model: payload.model, data: data.body }));
     })
     .catch(console.error);
 };
@@ -35,6 +32,25 @@ export const post = payload => dispatch => {
 const runPost = payload => {
   return {
     type: 'POST',
+    payload: payload,
+  };
+};
+
+export const deleteOne = payload => dispatch => {
+  console.log(payload.url, payload.model);
+  return superagent
+    .delete(payload.url)
+    .set('Authorization', `Bearer ${cookie.load('auth')}`)
+    .send(payload.record)
+    .then(data => {
+      dispatch(runDeleteOne({ id: payload.id, model: payload.model, data: data.body }));
+    })
+    .catch(console.error);
+};
+
+const runDeleteOne = payload => {
+  return {
+    type: 'DELETE',
     payload: payload,
   };
 };
