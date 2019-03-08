@@ -5,7 +5,7 @@
 **NOTE:** *I'm still working on incorporating the ability to choose/change models.  All other functionality is present.  Currently, the players model is active.*
 
 ### Links and Resources
-* [REPO: Week-8: CMS Project](http://xyz.com)
+* [REPO: Week-8: CMS Project](https://github.com/dlchambersjr/week8-cms-project)
 * [Deployed back-end](https://dc-api-server.herokuapp.com)
 * [Deployed front-end](http://dc-cms-week8.s3-website-us-west-2.amazonaws.com)
 
